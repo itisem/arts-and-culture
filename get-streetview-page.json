@@ -1,0 +1,135 @@
+{
+  "options": {
+    "syntax": "proto3"
+  },
+  "nested": {
+    "GetStreetviewPageResult": {
+      "fields": {
+        "page": {
+          "rule": "required",
+          "type": "StreetviewPage",
+          "id": 1
+        }
+      }
+    },
+    "StreetviewPage": {
+      "fields": {
+        "result": {
+          "rule": "required",
+          "type": "SearchResult",
+          "id": 1
+        },
+        "metadata": {
+          "rule": "required",
+          "type": "MetaData",
+          "id": 2
+        }
+      }
+    },
+    "MetaData": {
+      "fields": {
+        "e": {
+          "type": "string",
+          "id": 1
+        },
+        "unknownA": {
+          "type": "int64",
+          "id": 2
+        },
+        "unknownB": {
+          "type": "int64",
+          "id": 5
+        }
+      }
+    },
+    "SearchResult": {
+      "fields": {
+        "type": {
+          "type": "string",
+          "id": 1
+        },
+        "queryId": {
+          "type": "string",
+          "id": 2
+        },
+        "items": {
+          "rule": "repeated",
+          "type": "StreetviewItem",
+          "id": 3
+        },
+        "totalItemCount": {
+          "type": "int64",
+          "id": 5
+        },
+        "cursor": {
+          "type": "string",
+          "id": 9
+        }
+      }
+    },
+    "StreetviewItem": {
+      "fields": {
+        "type": {
+          "type": "string",
+          "id": 1
+        },
+        "name": {
+          "type": "string",
+          "id": 2
+        },
+        "preview": {
+          "type": "string",
+          "id": 4
+        },
+        "urlEnding": {
+          "type": "string",
+          "id": 5
+        },
+        "unknownA": {
+          "type": "int64",
+          "id": 6
+        },
+        "museum": {
+          "type": "Museum",
+          "id": 11
+        },
+        "metadata": {
+          "type": "StreetviewItemMetadata",
+          "id": 22
+        }
+      }
+    },
+    "Museum": {
+      "fields": {
+        "id": {
+          "type": "string",
+          "id": 1
+        },
+        "unknownA": {
+          "type": "float",
+          "id": 2
+        },
+        "unknownB": {
+          "type": "bool",
+          "id": 11
+        },
+        "name": {
+          "type": "string",
+          "id": 13
+        }
+      }
+    },
+    "StreetviewItemMetadata": {
+      "fields": {
+        "unknownA": {
+          "type": "int64",
+          "id": 1
+        },
+        "id": {
+          "type": "string",
+          "id": 2
+        }
+      }
+    }
+  }
+}

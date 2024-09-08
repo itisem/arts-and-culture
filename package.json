@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "protobufjs-cli": "^1.1.3",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@gmaps-tools/pbfish": "^1.3.3",
+    "dotenv": "^16.4.5"
+  },
+  "scripts":{
+    "get": "tsx index.ts"
+  }
+}

@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+message GetStreetviewPageResult{
+	required StreetviewPage page = 1;
+}
+
+message StreetviewPage{
+	required SearchResult result = 1;
+	required MetaData metadata = 2;
+}
+
+message MetaData{
+	string e = 1; // I have only seen this have a value of "e"
+	int64 unknown_a = 2;
+	int64 unknown_b = 5;
+}
+
+message SearchResult{
+	string type = 1;
+	string query_id = 2;
+	repeated StreetviewItem items = 3;
+	int64 total_item_count = 5;
+	string cursor = 9;
+}
+
+message StreetviewItem{
+	string type = 1;
+	string name = 2;
+	string preview = 4;
+	string url_ending = 5;
+	int64 unknown_a = 6;
+	Museum museum = 11;
+	StreetviewItemMetadata metadata = 22;
+}
+
+message Museum{
+	string id = 1;
+	float unknown_a = 2;
+	bool unknown_b = 11;
+	string name = 13;
+}
+
+message StreetviewItemMetadata{
+	int64 unknown_a = 1;
+	string id = 2;
+}
