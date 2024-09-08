@@ -1,6 +1,13 @@
 import {type StreetviewItem} from "./get-streetview-page";
 import getLocationFromPano, {type Location} from "./get-location-from-pano"; 
 
+/**
+ * Turns getStreetview items into Locations.
+ * @param	{StreetviewItem[]}	items	An array of streetview items retrieved from getStreetview
+ * @param	{string}			apiKey  A Google Maps API key
+ * @param	{boolean}			addTags	Should there be location description tags added?
+ * @return	{Promise<Location[]>}	The resolved locations.
+ */
 export default async function getLocationsFromItems(items: StreetviewItem[], apiKey: string, addTags?: boolean): Promise<Location[]>{
 	const promises = items.map(item => {
 		// The item preview is required for getting the pano ID, reject if not present

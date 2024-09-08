@@ -3,6 +3,7 @@ import {stdin as input, stdout as output} from "node:process";
 import fs from "node:fs";
 import "dotenv/config";
 import getStreetview from "./get-streetview";
+import getUnclickableLocations from "./get-unclickable-locations";
 
 let apiKey = process.env.API_KEY;
 
@@ -15,9 +16,13 @@ async function streetviewInterface(): Promise<string>{
 	if(!apiKey) apiKey = await rl.question("Please enter a Google Maps API key: ");
 	// Get search term
 	const query = (await rl.question("Please enter your search term (may be empty): ")).trim();
+	// Do we only retrieve unclickable locations?
+	const unclickableOnly = (await rl.question("Unclickable locations only? (y/n, default n): ")).trim().toLowerCase() === "y";
 	// Search
 	console.log("Getting all Streetview results -- please be patient, this may take a while");
-	const streetview = await getStreetview(query, apiKey, 1000);
+	let streetview = await getStreetview(query, apiKey, 1000);
+	// Get only the unclickable locations if we have specified so
+	if(unclickableOnly) streetview = await getUnclickableLocations(streetview);
 	// Write file
 	const filename = (query === "") ? "_.json" : query.replaceAll(/\s/g, "_") + ".json";
 	fs.writeFileSync(filename, JSON.stringify(streetview));

@@ -12,6 +12,13 @@ export interface Location{
 	};
 }
 
+/**
+ * Retrieves a valid Location object given a pano ID.
+ * @param	{string}	panoId	The Google Street View pano ID.
+ * @param	{string}	apiKey	A valid Google Maps API key.
+ * @param	{string[]}	tags	Additional tags to add to the location (optional).
+ * @return	{Promise<Location>}	A promise representing the location.
+ */
 export default async function getLocationFromPano(panoId: string, apiKey: string, tags?: string[]): Promise<Location>{
 	// Construct request URL
 	const baseUrl = "https://maps.googleapis.com/maps/api/streetview/metadata";

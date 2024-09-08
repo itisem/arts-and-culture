@@ -1,6 +1,7 @@
 import getStreetviewPage, {type GetStreetviewPageResult} from "./get-streetview-page";
 import {type Location} from "./get-location-from-pano";
 import getLocationsFromItems from "./get-locations-from-items";
+import sleep from "./sleep";
 
 const limit = 100;
 const defaultDelay = 1000;
@@ -19,11 +20,10 @@ export default async function getStreetview(query: string, apiKey: string, delay
 	let {count, cursor, items}: GetStreetviewPageResult = await getStreetviewPage(query, limit);
 	let locations: Location[] = await getLocationsFromItems(items, apiKey, addTags);
 	if(count === 0) return [];
-	delay = delay ?? defaultDelay;
 	let pageCount = 1;
 	while(cursor){
 		console.log(`${pageCount * limit} / ${count} locations completed`);
-		if(delay) await new Promise(r => setTimeout(r, delay)); // Sleep in order to ensure that no timeout occurs
+		await sleep(delay);
 		// As long as there is a cursor, we can move onto the next page safely
 		const res = await getStreetviewPage(query, limit, cursor);
 		cursor = res.cursor;
