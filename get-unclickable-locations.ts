@@ -31,7 +31,7 @@ export default async function getUnclickableLocations(locations: Location[], del
 						lat: location.lat,
 						lng: location.lng
 					},
-					radius: 1
+					radius: 5 // 5 metres is needed to ensure that coordinate jumps don't cause locations to be falsely included here
 				},
 				queryOptions: {
 					clientCapabilities: {
